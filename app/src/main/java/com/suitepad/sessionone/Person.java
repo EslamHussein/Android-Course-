@@ -7,15 +7,27 @@ import java.io.Serializable;
  */
 
 public class Person implements Serializable {
+    int id;
     String name;
     int age;
-    int h;
+    int height;
 
 
-    public Person(String name, int age, int h) {
+    public Person() {
+    }
+
+    public Person(String name, int age, int height) {
         this.name = name;
         this.age = age;
-        this.h = h;
+        this.height = height;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,16 +46,16 @@ public class Person implements Serializable {
         this.age = age;
     }
 
-    public int getH() {
-        return h;
+    public int getHeight() {
+        return height;
     }
 
-    public void setH(int h) {
-        this.h = h;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     @Override
     public String toString() {
-        return name + " " + String.valueOf(age) + " " + String.valueOf(h);
+        return name + " " + String.valueOf(age) + " " + String.valueOf(height);
     }
 }

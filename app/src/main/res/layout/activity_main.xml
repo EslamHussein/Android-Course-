@@ -4,11 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.suitepad.sessionone.MainActivity">
+    android:orientation="vertical"
+    android:weightSum="12"
+    tools:context="com.suitepad.sessionone.view.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_person"
-        android:scrollbars="vertical"
+
+    <FrameLayout
+        android:id="@+id/headlines_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/colorPrimary" />
+
+    <FrameLayout
+        android:id="@+id/headlines_fragment1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
 </LinearLayout>

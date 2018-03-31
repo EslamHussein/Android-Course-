@@ -1,14 +1,13 @@
-package com.suitepad.sessionone;
+package com.suitepad.sessionone.network;
 
 import android.util.JsonReader;
 
-import org.json.JSONObject;
+import com.suitepad.sessionone.Person;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +18,9 @@ import java.util.List;
 
 public class UserConnection {
 
-    public List<User> loadData(URL url) throws IOException {
+    public List<Person> loadData(URL url) throws IOException {
 
-        List<User> result = null;
+        List<Person> result = null;
 
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -38,33 +37,33 @@ public class UserConnection {
     }
 
 
-    public List<User> readUsersArray(JsonReader reader) throws IOException {
-        List<User> users = new ArrayList<User>();
+    public List<Person> readUsersArray(JsonReader reader) throws IOException {
+        List<Person> people = new ArrayList<Person>();
 
         reader.beginArray();
         while (reader.hasNext()) {
-            users.add(readUser(reader));
+            people.add(readUser(reader));
         }
         reader.endArray();
-        return users;
+        return people;
     }
 
-    public User readUser(JsonReader reader) throws IOException {
-        User user = new User();
+    public Person readUser(JsonReader reader) throws IOException {
+        Person person = new Person();
 
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("id")) {
-                user.setId(reader.nextInt());
-            } else if (name.equals("first_name")) {
-                user.setFirstName(reader.nextString());
-            } else if (name.equals("last_name")) {
-                user.setLastName(reader.nextString());
+            if (name.equals("name")) {
+                person.setName(reader.nextString());
+            } else if (name.equals("age")) {
+                person.setAge(reader.nextInt());
+            } else if (name.equals("height")) {
+                person.setHeight(reader.nextInt());
             }
         }
         reader.endObject();
-        return user;
+        return person;
     }
 
 

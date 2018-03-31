@@ -1,16 +1,16 @@
-package com.suitepad.sessionone;
+package com.suitepad.sessionone.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.suitepad.sessionone.Person;
+import com.suitepad.sessionone.R;
 
 import java.util.List;
 
@@ -22,9 +22,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
 
     private List<Person> people;
     private Context context;
+    private OnClick onClick;
 
-    public PersonAdapter(List<Person> people) {
+    public PersonAdapter(OnClick onClick, List<Person> people) {
         this.people = people;
+        this.onClick = onClick;
+
     }
 
     @Override
@@ -46,7 +49,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                PersonDetailsActivity.lunchActivity(context, person);
+                onClick.onClick(person);
 //                Toast.makeText(context, person.getName(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -66,9 +69,15 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         RelativeLayout parent;
 
         public ViewHolder(View itemView) {
+
             super(itemView);
             nameTextView = itemView.findViewById(R.id.text_view_name);
             parent = itemView.findViewById(R.id.parent);
+
         }
+    }
+
+    public interface OnClick {
+        void onClick(Person person);
     }
 }

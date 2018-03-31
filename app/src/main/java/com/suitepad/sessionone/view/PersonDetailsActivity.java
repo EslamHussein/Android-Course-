@@ -1,10 +1,16 @@
-package com.suitepad.sessionone;
+package com.suitepad.sessionone.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.suitepad.sessionone.Person;
+import com.suitepad.sessionone.R;
+import com.suitepad.sessionone.db.CRUDManger;
+import com.suitepad.sessionone.db.MyPersonDBHelper;
+import com.suitepad.sessionone.db.PersonContract;
 
 public class PersonDetailsActivity extends AppCompatActivity {
 
@@ -26,8 +32,8 @@ public class PersonDetailsActivity extends AppCompatActivity {
 
         Person person = (Person) getIntent().getSerializableExtra(ARG_PERSON_KEY);
 
-        Toast.makeText(this, person.toString(), Toast.LENGTH_SHORT).show();
-
+        getSupportFragmentManager().beginTransaction().add(R.id.hamada
+                , DetailsPersonFragment.newInstance(person)).commit();
 
     }
 }
